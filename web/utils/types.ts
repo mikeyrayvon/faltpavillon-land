@@ -1,8 +1,14 @@
 export type Config = {
   siteTitle: string;
-  siteDescription: string;
   siteUrl: string;
+  siteDescription?: string;
   defaultOpenGraphImage?: Image;
+  contactEmail?: string;
+  social?: {
+    twitter?: string;
+    instagram?: string;
+    facebook?: string;
+  };
 };
 
 export type Store = {};
@@ -11,11 +17,14 @@ export type Image = {
   asset: {
     _ref: string;
   };
+  caption?: string;
+  alt?: string;
+  _key: string;
 };
 
 export type SeoMeta = {
-  description: string;
-  openGraphImage: Image;
+  description?: string;
+  openGraphImage?: Image;
   includeInSitemap: boolean;
   disallowRobots: boolean;
 };

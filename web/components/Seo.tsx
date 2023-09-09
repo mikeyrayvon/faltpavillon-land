@@ -1,9 +1,12 @@
 import Head from "next/head";
 import { urlFor } from "utils/sanity";
 import { useRouter } from "next/router";
+import { useConfigContext } from "utils/context";
+import { Config, Image, SeoMeta } from "utils/types";
 
-const Seo = ({ config, doc }: { config?: any; doc?: any }) => {
+const Seo = ({ doc }: { doc?: any }) => {
   const router = useRouter();
+  const config = useConfigContext();
   let metaTitle = process.env.NEXT_PUBLIC_SITE_TITLE;
 
   if (!config && !doc) {
@@ -15,13 +18,13 @@ const Seo = ({ config, doc }: { config?: any; doc?: any }) => {
     );
   }
 
-  let title,
-    seoMeta,
-    siteTitle,
-    siteDescription,
-    siteUrl,
-    defaultOpenGraphImage,
-    social;
+  let title: string,
+    seoMeta: SeoMeta,
+    siteTitle: Config["siteTitle"],
+    siteDescription: Config["siteDescription"],
+    siteUrl: Config["siteUrl"],
+    defaultOpenGraphImage: Config["defaultOpenGraphImage"],
+    social: Config["social"];
 
   if (config) {
     ({ siteTitle, siteDescription, siteUrl, defaultOpenGraphImage, social } =

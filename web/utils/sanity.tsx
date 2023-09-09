@@ -36,11 +36,19 @@ export const urlFor = (source) => {
 export const usePreviewSubscription = createPreviewSubscriptionHook(config);
 
 // Set up Portable Text serialization
-export const PortableText = (props) => (
-  <PortableTextComponent components={PortableTextComponents} {...props} />
-);
+export const PortableText = (props) => {
+  return (
+    <PortableTextComponent components={PortableTextComponents} {...props} />
+  );
+};
 
 const PortableTextComponents = {
+  block: {
+    normal: ({ children }) => <p className="mb-4">{children}</p>,
+    title: ({ children }) => (
+      <h1 className="text-base font-normal mb-4">{children}</h1>
+    ),
+  },
   types: {
     container: ({ children, className }) => (
       <div className={`portable-text ${className && className}`}>
@@ -55,9 +63,16 @@ const PortableTextComponents = {
   marks: {
     internalLink: ({ children, value }) => {
       const { slug } = value;
-
       return (
         <Link href={`/${slug}`} className="underline">
+          {children}
+        </Link>
+      );
+    },
+    link: ({ children, value }) => {
+      const { href } = value;
+      return (
+        <Link href={href} className="underline">
           {children}
         </Link>
       );

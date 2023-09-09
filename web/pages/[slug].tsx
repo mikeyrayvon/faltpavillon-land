@@ -8,19 +8,21 @@ import { configQuery } from "../utils/queries";
 import type { NextPage } from "next";
 import Seo from "../components/Seo";
 import Layout from "../components/Layout";
-import { Post as DocType } from "../utils/types";
 import { filterDataToSingleItem } from "../utils/helpers";
 import ExitPreview from "components/ExitPreview";
 import Container from "components/Container";
+import Images from "components/Images";
 
 const query = groq`
-  *[_type == 'page' && slug.current == $slug][0] {
+  *[_type in ["page", "project"] && slug.current == $slug][0] {
     ...,
   }
 `;
 
 export const getStaticPaths = async () => {
-  const routes = await getClient().fetch(`*[_type == 'page'][].slug.current`);
+  const routes = await getClient().fetch(
+    `*[_type in ["page", "project"]][].slug.current`
+  );
 
   return {
     paths: routes.map((slug: string) => ({ params: { slug } })),
@@ -78,9 +80,15 @@ const Page: NextPage<{
       {doc && (
         <div className="pb-40">
           <Container>
-            <h1 className="text-4xl font-bold">{doc.title}</h1>
-            <PortableText value={doc.content} />
+            <div className="mb-12">
+              <PortableText value={doc.content} />
+            </div>
           </Container>
+          {doc.images && doc.images.length > 0 && (
+            <div className="bg-black py-24">
+              <Images images={doc.images} defaultCaption={doc.title} />
+            </div>
+          )}
         </div>
       )}
       {preview && <ExitPreview />}
