@@ -48,7 +48,7 @@ const MailingList = () => {
             <label className="block" htmlFor="first-name">
               <span className="hidden">First Name</span>
               <input
-                className="block w-full border-b bg-transparent focus:ring-0 focus:border-green-400"
+                className="block w-full border-b bg-transparent focus:ring-0 focus:border-green-400 h-10"
                 id="first"
                 name="first"
                 type="text"
@@ -62,7 +62,7 @@ const MailingList = () => {
             <label className="block" htmlFor="last-name">
               <span className="hidden">Last Name</span>
               <input
-                className="block w-full border-b bg-transparent focus:ring-0 focus:border-green-400"
+                className="block w-full border-b bg-transparent focus:ring-0 focus:border-green-400 h-10"
                 id="last"
                 name="last"
                 type="text"
@@ -78,7 +78,7 @@ const MailingList = () => {
             <label className="block" htmlFor="email">
               <span className="hidden">Email</span>
               <input
-                className="block w-full border-b bg-transparent focus:ring-0 focus:border-green-400"
+                className="block w-full border-b bg-transparent focus:ring-0 focus:border-green-400 h-10"
                 id="email"
                 name="email"
                 type="email"
@@ -91,7 +91,7 @@ const MailingList = () => {
           <div className="w-[200px]">
             <button
               type="submit"
-              className="w-full disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none focus:ring-0 focus:border-green-600 border bg-white h-full py-4 md:py-0"
+              className="w-full disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none focus:ring-0 focus:border-green-600 border bg-white h-10"
               disabled={loading}
             >
               {loading ? "Subscribing..." : "Subscribe"}
