@@ -8,7 +8,7 @@ const Header = () => {
   const { siteTitle, social, contactEmail } = useConfigContext();
 
   return (
-    <header>
+    <header className="mb-8">
       <Container>
         <div className="flex justify-between pb-4 gap-4">
           <div>
