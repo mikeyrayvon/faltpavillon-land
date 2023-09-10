@@ -1,5 +1,6 @@
 import { urlFor } from "utils/sanity";
 import { Image } from "utils/types";
+import Container from "./Container";
 
 const Images = ({
   images,
@@ -9,22 +10,24 @@ const Images = ({
   defaultCaption: string;
 }) => {
   return (
-    <div className="flex flex-col items-center">
-      {images.map((image) => {
-        const { alt, caption, _key } = image;
-        return (
-          <figure className="mb-36" key={_key}>
-            <img
-              src={urlFor(image).url()}
-              alt={alt ? alt : caption ? caption : defaultCaption}
-            />
-            {caption && (
-              <figcaption className="text-white mt-2">{caption}</figcaption>
-            )}
-          </figure>
-        );
-      })}
-    </div>
+    <Container>
+      <div className="flex flex-col items-center">
+        {images.map((image) => {
+          const { alt, caption, _key } = image;
+          return (
+            <figure className="mb-20 lg:mb-24 xl:mb-36" key={_key}>
+              <img
+                src={urlFor(image).url()}
+                alt={alt ? alt : caption ? caption : defaultCaption}
+              />
+              {caption && (
+                <figcaption className="text-white mt-2">{caption}</figcaption>
+              )}
+            </figure>
+          );
+        })}
+      </div>
+    </Container>
   );
 };
 
