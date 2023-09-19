@@ -86,7 +86,10 @@ const Page: NextPage<{
           </Container>
           {doc.images && doc.images.length > 0 && (
             <div className="bg-black py-24">
-              <Images images={doc.images} defaultCaption={doc.title} />
+              <Images
+                images={doc.images}
+                defaultCaption={`Faltpavillon documentation; ${doc.title}`}
+              />
             </div>
           )}
         </div>
